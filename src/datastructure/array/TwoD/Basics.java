@@ -1,4 +1,4 @@
-package datastructre.array.TwoD;
+package datastructure.array.TwoD;
 
 public class Basics {
 	// print a 2D Array
