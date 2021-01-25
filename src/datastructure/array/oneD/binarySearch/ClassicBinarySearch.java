@@ -53,7 +53,7 @@ public class ClassicBinarySearch {
 
 		System.out.println(solu.binarySearch(new int[] { 1 }, 1)); // 0
 
-		int[] array = new int[] { 1, 2, 3, 4, 5, 6, 7 };
+		int[] array = new int[] { 1, 2, 3, 4, 5, 6, 7 }; // 4
 		System.out.println(solu.binarySearch(array, 5));
 
 	}
