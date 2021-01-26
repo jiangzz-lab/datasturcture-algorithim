@@ -2,27 +2,40 @@ package datastructure.array.oneD.binarySearch;
 
 public class FirstOccurence {
 	/*
-	 * Solution: in every step, reduce the searching range by comparing the middle
+	 * input: 
+	 * int[] array -- sorted in ascending order, could have duplicate elements
+	 * int target
+	 * 
+	 * output: 
+	 * int index of the first occurence of target in array no found? return -1
+	 * 
+	 * corner case:
+	 * array == null, empty ? return -1
+	 * 
+	 * Solution: 
+	 * in every step, reduce the searching range by comparing the middle
 	 * element to the target
 	 * 
-	 * case1: midValue == target ? drop all elements after mid -- right = mid 
+	 * case1: midValue == target ? drop all elements after mid -- right = mid
 	 * case2: midValue < target ? drop mid and all elements before mid -- left = mid + 1
 	 * case3: midValue > target ? drop mid and all elements after mid -- right = mid - 1
 	 * 
-	 * cannot continue to reduce searching range when only 1 element left loop
-	 * condition: left < right
+	 * cannot continue to reduce searching range when only 1 element left
+	 * loop condition: left < right
 	 * 
-	 * 2 elements could be reduced to 0 element: 2, 3 target = 1 -- next: right =
-	 * left - 1
+	 * 2 elements could be reduced to 0 element:
+	 * 2, 3 target = 1 -- next: right = left - 1
 	 * 
-	 * or 1 elememt: 2, 3 target = 4 -- next: left = right
+	 * or 1 elememt:
+	 * 2, 3 target = 4 -- next: left = right
 	 * 
 	 * if left < right || array[left] != target return -1 otherwise return left
 	 * 
-	 * TC = O(logn), n = input array length SC= O(1)
+	 * TC = O(logn), n = input array length
+	 * SC = O(1)
 	 * 
 	 */
-	
+
 	public int firstOccurence(int[] array, int target) {
 		// check null, empty input
 		if (array == null || array.length == 0) {
