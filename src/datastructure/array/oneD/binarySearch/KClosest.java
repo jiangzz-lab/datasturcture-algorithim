@@ -4,6 +4,54 @@ import java.util.Arrays;
 // import datastructure.array.OneD.Basics;
 
 public class KClosest {
+
+	/*
+	 * input: int[] array -- sorted in ascending order; could have duplicates 
+	 * int target
+	 * int k
+	 * 
+	 * assumption: 
+	 * array not null; 
+	 * k >= 0 && k <= array.length
+	 * 
+	 * output: 
+	 * int[] res -- size = k, k closest elements to target in array
+	 * 
+	 * corner case: 
+	 * k == 0 ? return empty array
+	 * 
+	 * Solution:
+	 * 
+	 * step1. find largest smaller or equal, record its index i 
+	 * step2. search leftwards and rightwards using binary-search strategy
+	 * 
+	 * search range [0, left], [right, 0], init: left = i, right = i + 1 (left,
+	 * right) := range of the result elements
+	 * 
+	 * in every step, put k / 2 elements in result 
+	 * k should be updated accordingly after every step (k -- k - k / 2)
+	 * 
+	 * leftMid = left - k / 2 + 1 rightMid = right + k / 2 - 1
+	 * 
+	 * case1: rightMid >= array.length || leftMid > 0 && abs(array[leftMid] -
+	 * target) <= abs(array[rightMid] - target) ? array[leftMid … left] must be all
+	 * in the result
+	 * 
+	 * case2: rightMid < array.length && (leftMid < 0 || abs(array[leftMid] -
+	 * target) > abs(array[rightMid] - target)) ? array[right … rightMid] must be
+	 * all in the result
+	 * 
+	 * base case: k == 1 ? put the closer between array[left], array[right] in res
+	 * 
+	 * TC: n = input array size 
+	 * O(logn) determine the initial bounds + O(logk) determine the bounds of the result
+	 * + O(k) to generate result total
+	 * TC = O(logn + k)
+	 * 
+	 * SC: O(1) (O(k) of result not included)
+	 * 
+	 */
+
 	public int[] kClosest(int[] array, int target, int k) {
 		// step1: determine the initial bounds of the searching range
 		int left = largestSmallerOrEqual(array, target);
@@ -68,6 +116,6 @@ public class KClosest {
 		int[] res = solu.kClosest(array, 5, 4);
 		for (int num : res) {
 			System.out.print(num + " ");
-		}
+		} // 4 5 5 6
 	}
 }
