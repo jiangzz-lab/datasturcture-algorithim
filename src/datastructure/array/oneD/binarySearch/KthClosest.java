@@ -1,6 +1,47 @@
 package datastructure.array.oneD.binarySearch;
 
 public class KthClosest {
+
+	/*
+	 * input: 
+	 * int[] array -- sorted in ascending order int target int k
+	 * 
+	 * output:
+	 * int index of the kth closest
+	 * 
+	 * assumption:
+	 * array not null, empty 0 < k <= input length
+	 * 
+	 * [0, left], [right, array.length - 1] is the searching range (left, right)
+	 * contains the excluded elements
+	 * 
+	 * init : left = index of largest smaller or equal right = left + 1
+	 * 
+	 * in every step drop k / 2 elements which could not be the k-th closest
+	 * 
+	 * leftMid = left - k / 2 + 1 rightMid = right + k / 2 - 1
+	 * 
+	 * case1: rightMid >= array.length || (leftMid >= 0 && array[leftMid] is closer
+	 * to target than array[rightMid]) ? 
+	 * drop [leftMid, left] -- left = leftMid - 1 
+	 * case2: rightMid < array.length && (leftMid < 0 || array[rightMid] is closer
+	 * to target than array[leftMid]) ?
+	 * drop [right, rightMid] -- right = rightMid + 1
+	 * 
+	 * base case: 
+	 * left < 0 ? return right + k - 1 
+	 * right >= array.length ? return
+	 * left - k + 1 k == 1 ? return the closer of left, right
+	 * 
+	 * loop condition: left >= 0 || right < array.length (non-empty searching range)
+	 * 
+	 * TC: n = input array length 
+	 * O(log(n)) + O(log(k)) = O(log(n))
+	 * 
+	 * SC: O(1)
+	 * 
+	 */
+
 	public int kthClosest(int[] array, int target, int k) {
 		// step1: find initial bounds of left/ right search ranges
 		int left = largestSmallerOrEqual(array, target);
