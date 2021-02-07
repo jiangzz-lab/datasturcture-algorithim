@@ -3,6 +3,31 @@ package datastructure.array.oneD.pointers;
 import datastructre.array.OneD.*;
 
 public class MoveZerosToEnd {
+	/*
+	 * input: 
+	 * int[] array -- unsorted, could have duplicates
+	 * 
+	 * output: 
+	 * int[] array with all 0s moved to the right
+	 * 
+	 * corner case: 
+	 * array is null, empty ? do nothing
+	 * 
+	 * Solution: linear scan the input and generate the result in place
+	 * 
+	 * use two pointers: 
+	 * [0, probe) -- non-zeros; [probe, unknown] -- to be explored; (unknown, n - 1] -- 0s
+	 * 
+	 * in every step, 
+	 * case1: array[probe] == 0 ? swap(probe, unknown), unknown-- 
+	 * case2: array[probe] != 0 ? probe++
+	 * 
+	 * TC: n = input array length
+	 * TC of every step = O(1), step# = O(n) total TC = O(n)
+	 * 
+	 * SC: O(1)
+	 * 
+	 */
 	public int[] moveZeros(int[] array) {
 		if (array == null || array.length <= 1) {
 			return array;
