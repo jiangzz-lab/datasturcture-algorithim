@@ -46,6 +46,35 @@ public class RainbowSort {
 		}
 		return array;
 	}
+	
+	public int[] rainbowSort(int[] array, int k) {
+		if (array == null || array.length <= 1) {
+			return array;
+		}
+		int[] bounds = new int[k];
+		bounds[k - 1] = array.length - 1;
+		while (array[bounds[k - 2]] <= bounds[k - 1]) {
+			if (bounds[k - 2] == k - 1) {
+			swap(array, bounds[k - 2], bounds[k - 1]--);
+		} else if (array[bounds[k - 2]] == k - 2){
+			bounds[k - 2]++;
+		} else {
+			for (int i = 0; i < k - 2; i++) {
+			if (array[bounds[k - 2]] == i) {
+			swap(array, bounds[k - 2], bounds[i]);
+			for (int j = i + 1; j < k - 2; j++) {
+			if (bounds[j] == bounds[i]) {
+			bounds[j]++;
+		}
+		}
+		bounds[i]++;
+		bounds[k-2]++;
+		}
+		}
+		}
+		}
+		return array;
+	}
 
 	void swap(int[] array, int left, int right) {
 		int temp = array[left];
@@ -65,5 +94,11 @@ public class RainbowSort {
 		
 		helper.print1DArray(solu.rainbowSort(new int[] {1, 1, 0, 0, -1, 1, 0})); 
 		// -1 0 0 0 1 1 1
+		
+		helper.print1DArray(solu.rainbowSort(new int[] {1, 0, -2, 0, 3, -3})); 
+		// -3 -2 0 0 3 1
+		// the relative position of positive/negtive numbers can change
+		
+		helper.print1DArray(solu.rainbowSort(new int[] {1, 0, 1, 3, 0, 2, 3, 2}, 4));
 	}
 }
